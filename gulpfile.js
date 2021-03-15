@@ -8,7 +8,7 @@ var settings = {
 	scripts: true,
 	polyfills: true,
 	styles: true,
-	svgs: true,
+	images: true,
 	copy: true,
 	reload: true
 };
@@ -30,9 +30,9 @@ var paths = {
 		input: 'src/sass/**/*.{scss,sass}',
 		output: 'dist/css/'
 	},
-	svgs: {
-		input: 'src/svg/*.svg',
-		output: 'dist/svg/'
+	images: {
+		input: 'src/images/*',
+		output: 'dist/images/'
 	},
 	copy: {
 		input: 'src/index.html',
@@ -90,8 +90,8 @@ var postcss = require('gulp-postcss');
 var prefix = require('autoprefixer');
 var minify = require('cssnano');
 
-// SVGs
-var svgmin = require('gulp-svgmin');
+// Images
+const imagemin = require('gulp-imagemin');
 
 // BrowserSync
 var browserSync = require('browser-sync');
@@ -222,15 +222,15 @@ var buildStyles = function (done) {
 };
 
 // Optimize SVG files
-var buildSVGs = function (done) {
+var compressImages = function (done) {
 
 	// Make sure this feature is activated before running
-	if (!settings.svgs) return done();
+	if (!settings.images) return done();
 
-	// Optimize SVG files
-	return src(paths.svgs.input)
-		.pipe(svgmin())
-		.pipe(dest(paths.svgs.output));
+	// Compress images
+	return src(paths.images.input)
+		.pipe(imagemin())
+		.pipe(dest(paths.images.output))
 
 };
 
@@ -305,12 +305,16 @@ exports.default = series(
 		buildScripts,
 		lintScripts,
 		buildStyles,
-		buildSVGs,
 		//copyFiles,
 		buildHTML,
 		copyRequired
 	)
 );
+
+exports.build = series(
+	exports.default,
+	compressImages
+)
 
 // Watch and reload
 // gulp watch
