@@ -1,0 +1,20 @@
+// Utilities
+@import "node_modules/rfs/scss.scss";
+@import "src/sass/utils/functions";
+@import "src/sass/utils/variables";
+
+// Base imports
+@import "src/sass/base/typography";
+@import "src/sass/base/reset";
+@import "src/sass/base/colors";
+
+// Components
+@import "src/sass/components/buttons";
+@import "src/sass/components/carousel";
+
+// Layout
+@import "src/sass/layout/header";
+@import "src/sass/layout/footer";
+
+// Pages
+@import "src/sass/pages/home";

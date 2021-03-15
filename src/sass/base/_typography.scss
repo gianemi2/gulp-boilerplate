@@ -1,0 +1,32 @@
+@font-face {
+    font-family: frank;
+    src: url(/fonts/Frank_Ruhl_Libre/FrankRuhlLibre-Regular.ttf);
+}
+
+@font-face {
+    font-family: jost;
+    src: url(/fonts/Jost/Jost-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: jost;
+    src: url(/fonts/Jost/Jost-Medium.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: jost;
+    src: url(/fonts/Jost/Jost-SemiBold.ttf);
+    font-weight: 600;
+}
+
+body {
+    font-family: 'frank';
+}
+
+h1 {
+    font-family: 'jost';
+    @include font-size(64px);
+
+}
